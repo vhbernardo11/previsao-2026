@@ -1,2 +1,131 @@
-<!--HTML System Content-->
-<!-- Sistema de Previsao 2026 - Arquivo enviado para GitHub com sucesso -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Previsão 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .status {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .status-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .info {
+            color: #666;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        
+        .info p {
+            margin: 10px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Sistema de Previsão 2026</h1>
+        <div class="subtitle">Hospedado no GitHub Pages</div>
+        
+        <div class="status">
+            <div class="status-icon">✅</div>
+            <div>Sistema Online e Funcional!</div>
+        </div>
+        
+        <div class="info">
+            <p><strong>🌟 Versão:</strong> 1.0</p>
+            <p><strong>📅 Data:</strong> <span id="data"></span></p>
+            <p><strong>🔗 Repositório:</strong> GitHub - vhbernardo11/previsao-2026</p>
+            <p><strong>🚀 Plataforma:</strong> GitHub Pages</p>
+        </div>
+        
+        <button class="btn" onclick="alert('Sistema de Previsão 2026 - Em desenvolvimento!')">Clique Aqui</button>
+        
+        <div class="footer">
+            <p>Desenvolvido com ❤️ em 2026</p>
+        </div>
+    </div>
+    
+    <script>
+        // Exibir data atual
+        const dataElement = document.getElementById('data');
+        const hoje = new Date();
+        const opcoes = { year: 'numeric', month: 'long', day: 'numeric', language: 'pt-BR' };
+        dataElement.textContent = hoje.toLocaleDateString('pt-BR', opcoes);
+        
+        console.log('Sistema de Previsão 2026 - Online');
+    </script>
+</body>
+</html>
