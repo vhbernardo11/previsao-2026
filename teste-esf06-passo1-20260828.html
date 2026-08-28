@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teste ESF06</title>
+<style>
+body{font-family:system-ui;margin:0;background:#f5f7f6;color:#18332d}
+main{max-width:680px;margin:auto;padding:24px}
+.card{background:white;border:1px solid #dbe6e2;border-radius:16px;padding:18px;margin-bottom:14px}
+.ok{color:#0b6b58;font-weight:800;font-size:24px}
+pre{white-space:pre-wrap;word-break:break-word;background:#f2f4f3;padding:12px;border-radius:10px}
+</style>
+</head>
+<body>
+<main>
+<div class="card">
+<div class="ok">PASSO 1 — PÁGINA ABRIU</div>
+<p>Se você está lendo isto, o GitHub Pages está entregando esta versão nova corretamente.</p>
+</div>
+<div class="card">
+<h2>PASSO 2 — SUPABASE</h2>
+<div id="status">Consultando o Supabase...</div>
+<pre id="out"></pre>
+</div>
+</main>
+<script>
+const SUPA='https://pvwqxpqetdxtmqqypqjk.supabase.co';
+const KEY='sb_publishable_WwKpO5d-LZzh3vgOF1dJOg_rMO7UHgF';
+(async()=>{
+ try{
+  const r=await fetch(SUPA+'/rest/v1/rpc/esf06_campo_api',{
+   method:'POST',
+   headers:{apikey:KEY,'Content-Type':'application/json'},
+   body:JSON.stringify({p_action:'overview',p_key:'ESF06-CAMPO',p_payload:{}})
+  });
+  const j=await r.json();
+  if(!r.ok) throw new Error((j&&j.message)||('HTTP '+r.status));
+  document.getElementById('status').innerHTML='<b style="color:#0b6b58">SUPABASE CONECTADO</b>';
+  document.getElementById('out').textContent=
+   'Famílias: '+j.summary.total+'\n'+
+   'Não visitadas: '+j.summary.nao_visitado+'\n'+
+   'Ruas: '+j.streets.length+'\n\n'+
+   j.streets.map(x=>x.street+' — '+x.total).join('\n');
+ }catch(e){
+  document.getElementById('status').innerHTML='<b style="color:#a22">ERRO NO SUPABASE</b>';
+  document.getElementById('out').textContent=String(e&&e.message?e.message:e);
+ }
+})();
+</script>
+</body>
+</html>
