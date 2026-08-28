@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=sistema.html">
-    <title>Sistema de Previsão 2026 - Redirecionando...</title>
-</head>
-<body>
-    Redirecionando para o sistema...
-</body>
-</html>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b6b58"><title>ESF06 Recadastramento</title><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css"></head><body>
+<header id="hdr" hidden><div class="brand"><div><h1>ESF-06 · Recadastramento</h1><small id="sync">carregando…</small></div><button id="logout">Sair</button></div></header>
+<main class="wrap"><section id="login" class="card login"><h2>ESF-06</h2><small>Recadastramento familiar · Teodoro Sampaio</small><label>Código de acesso</label><input id="access" type="password" placeholder="Digite o código"><button id="enter" class="pri">Entrar</button></section>
+<section id="app" hidden><div class="stats"><div class="stat">Famílias<b id="st">0</b></div><div class="stat">Pendentes<b id="sp">0</b></div><div class="stat">Concluídas<b id="sd">0</b></div><div class="stat">Alto risco<b id="sh">0</b></div></div>
+<div class="card"><div class="search"><input id="q" placeholder="Buscar nome, família, rua ou número…"><button id="reload">Atualizar</button></div><div class="filters"><select id="fs"><option value="">Todos</option><option value="pendente">Pendentes</option><option value="concluido">Concluídas</option></select><select id="fr"><option value="">Todos os riscos</option><option>alto</option><option>medio</option><option>baixo</option><option value="sem_risco">sem risco</option><option value="pendente">sem classificação</option></select><select id="fstreet"><option value="">Todas as ruas</option></select></div></div><div id="list" class="list"></div></section></main>
+<dialog id="dlg"><div class="modal"><div class="top"><div><h2 id="name"></h2><small id="code"></small></div><button id="close">Fechar</button></div>
+<h3>Endereço</h3><div class="grid"><label class="full">Logradouro<input id="street"></label><label>Número<input id="number"></label><label>Bairro<input id="neighborhood"></label><label>CEP<input id="postal_code"></label><label>Cidade<input id="city"></label><label>UF<input id="state"></label><label>Referência<input id="reference"></label></div>
+<h3>Domicílio</h3><div class="grid"><label>Data<input id="data_recadastramento" type="date"></label><label>Moradores<input id="moradores" type="number"></label><label>Cômodos<input id="comodos" type="number"></label><label>Distância (km)<input id="distancia_km" type="number" step="0.1"></label></div>
+<h3>Condições e vulnerabilidades</h3><div id="bools"></div></div></dialog>
+<div id="bar" class="savebar"><button id="save" class="pri">Salvar alterações</button><button id="cancel">Cancelar</button></div><div id="toast" class="toast"></div><script src="app.js"></script></body></html>
