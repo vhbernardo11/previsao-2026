@@ -1,0 +1,9 @@
+{
+  "name": "ESF06 Recadastramento",
+  "short_name": "ESF06",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#0b6b58",
+  "icons": []
+}
