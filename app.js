@@ -4,7 +4,7 @@ let rows=[],current=null,draft={},key=localStorage.getItem('esf06_key')||'';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
-async function api(path='',opts={}){const h={...(opts.headers||{}),'x-esf06-key':key};if(opts.body)h['content-type']='application/json';const r=await fetch(API+path,{...opts,headers:h});const j=await r.json();if(!r.ok)throw new Error(j.error||'Falha');return j}
+async function api(path='',opts={}){const sep=path.includes('?')?'&':'?';const url=API+path+sep+'k='+encodeURIComponent(key);const h={...(opts.headers||{})};if(opts.body)h['content-type']='text/plain;charset=UTF-8';let r;try{r=await fetch(url,{...opts,headers:h})}catch(e){throw new Error('Não foi possível conectar ao Supabase')};let j;try{j=await r.json()}catch(e){throw new Error('Resposta inválida do servidor ('+r.status+')')};if(!r.ok)throw new Error((j.error||'Falha')+' ('+r.status+')');return j}
 function riskLabel(r){return({alto:'Alto risco',medio:'Médio risco',baixo:'Baixo risco',sem_risco:'Sem risco',pendente:'Pendente'})[r]||'Pendente'}
 async function load(){ $('sync').textContent='atualizando…';const j=await api('?action=list');rows=j.rows||[];$('sync').textContent='dados atualizados';fillStreets();render()}
 function fillStreets(){const cur=$('fstreet').value;const vals=[...new Set(rows.map(x=>x.street).filter(Boolean))].sort();$('fstreet').innerHTML='<option value="">Todas as ruas</option>'+vals.map(x=>'<option>'+esc(x)+'</option>').join('');$('fstreet').value=cur}
