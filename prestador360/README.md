@@ -16,7 +16,7 @@ Painel com KPIs, clientes fictícios, serviços fictícios, ordens, orçamentos 
 
 ## Casos manuais de regressão
 - 2026, Simples III, RBT12 R$ 240.000, receita do mês R$ 18.000 → alíquota efetiva 7,30%; DAS R$ 1.314,00; parcela ISS (32%) R$ 420,48.
-- 2027, Simples III, mesma base → DAS R$ 1.314,00; CBS (16,91% do DAS) R$ 222,2274 antes do arredondamento; IBS (0,19% do DAS) R$ 2,4966 antes do arredondamento.
+- 2027, Simples III, mesma base → DAS R$ 1.314,00; CBS (16,91% do DAS) R$ 222,1974 antes do arredondamento (R$ 222,20); IBS (0,19% do DAS) R$ 2,4966 antes do arredondamento (R$ 2,50).
 - 2026, Simples IV, mesma base → efetiva 5,625%; DAS R$ 1.012,50; ISS (40% do DAS) R$ 405,00. CPP patronal fora.
 - 2026 MEI serviços → R$ 86,05 fixos, independente da nota.
 
@@ -32,3 +32,19 @@ Painel com KPIs, clientes fictícios, serviços fictícios, ordens, orçamentos 
 Há um projeto separado em Lovable Cloud com Supabase PostgreSQL provisionado. Criação de projeto Supabase diretamente na organização conectada exige confirmação de custo adicional, embora a cotação obtida tenha sido US$ 0/mês. A Vercel conectada retornou 403 na tentativa de criar um projeto e a equipe está no plano Hobby (uso pessoal não comercial). A publicação comercial exige plano compatível e validação jurídica, fiscal e segurança.
 
 A pasta `schema/` descreve o modelo desejado, **não aplicado** em projetos conectados sem auditoria de permissões.
+
+## Versão online 2 — 07/11/2026
+- Hospedagem de demonstração: https://prestador-360.hatchable.site (pessoal, com login).
+- Laboratório Fiscal 2.0: https://prestador-360.hatchable.site/fiscal.html
+- Código do módulo: fiscal.html, fiscal.js (15 verificações no navegador; todas passaram em 07/11/2026).
+- Contrato da base definitiva: supabase/001_schema_seguro.sql (RLS e referências compostas entre empresas, **não executado**).
+- O banco Supabase dedicado ainda não existe nesta organização. Cotação consultada em 07/11/2026: **US$ 0/mês**; criação retornou solicitação de um ID de confirmação de custo, que exige consentimento explícito do usuário. Não reutilizar bancos de outros projetos.
+- Regras de ISS municipal precisam importar a base nacional ZIP de 03/09/2026, verificar vigência, subitem de serviço e cidade; não há alíquota estadual única de ISS.
+- Vercel não foi utilizada; tentativa anterior retornou 403. Lovable não é hospedagem deste app.
+- Antes de uso comercial: banco exclusivo, autenticação, RLS testada com usuários diferentes, classificação fiscal por código de serviço/NBS, aprovação contábil, controle de versões legais, LGPD, proteção de API, backups e plano de hospedagem que permita comércio.
+
+## Códigos e fontes
+- LC 227/2026 Anexo III: https://legis.senado.gov.br/norma/40180341/publicacao/40181117
+- LC 227/2026 Anexo IV: https://legis.senado.gov.br/norma/40180341/publicacao/40181123
+- Resolução CGSN 140/2018: https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=92278
+- Base municipal ISSQN: https://www.gov.br/nfse/pt-br/biblioteca/perguntas-e-respostas/aliquotas
