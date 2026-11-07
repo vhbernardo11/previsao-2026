@@ -90,6 +90,14 @@ create table public.p360_tax_scenarios (
   reviewer_confirmed boolean not null default false,
   created_at timestamptz not null default now()
 );
+-- Índices de performance para RLS, FKs e filtro por organização.
+create index p360_tax_scenarios_org_competence_idx on public.p360_tax_scenarios(org_id,competence_date);
+create index p360_work_orders_org_client_idx on public.p360_work_orders(org_id,client_id);
+create index p360_work_orders_org_service_idx on public.p360_work_orders(org_id,service_id);
+create index p360_quotes_org_client_idx on public.p360_quotes(org_id,client_id);
+create index p360_quote_lines_org_quote_idx on public.p360_quote_lines(org_id,quote_id);
+create index p360_quote_lines_org_service_idx on public.p360_quote_lines(org_id,service_id);
+
 -- Bloqueio por padrão até políticas explícitas.
 alter table public.p360_organizations enable row level security;
 alter table public.p360_clients enable row level security;
@@ -105,6 +113,12 @@ grant select,insert,update,delete on public.p360_organizations,public.p360_clien
 revoke all on public.p360_organizations,public.p360_clients,public.p360_services,
   public.p360_work_orders,public.p360_quotes,public.p360_quote_lines,
   public.p360_tax_scenarios from anon;
+revoke all on public.p360_organizations,public.p360_clients,public.p360_services,
+  public.p360_work_orders,public.p360_quotes,public.p360_quote_lines,
+  public.p360_tax_scenarios from public;
+grant select,insert,update,delete on public.p360_organizations,public.p360_clients,
+  public.p360_services,public.p360_work_orders,public.p360_quotes,
+  public.p360_quote_lines,public.p360_tax_scenarios to service_role;
 create policy p360_org_own_all on public.p360_organizations
   for all to authenticated
   using(owner_user_id=(select auth.uid()))
